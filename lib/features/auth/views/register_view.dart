@@ -35,18 +35,9 @@ class RegisterView extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomFormField(
-                      controller: RegisterCubit.get(context).nameArController,
+                      controller: RegisterCubit.get(context).nameController,
                       validator: MyFormValidators.validateRequired,
-                      labelText: TranslationsKeys.nameAr.tr,
-                      keyboardType: TextInputType.name,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomFormField(
-                      controller: RegisterCubit.get(context).nameEnController,
-                      validator: MyFormValidators.validateRequired,
-                      labelText: TranslationsKeys.nameEn.tr,
+                      labelText: TranslationsKeys.name.tr,
                       keyboardType: TextInputType.name,
                     ),
                     SizedBox(
@@ -122,11 +113,11 @@ class RegisterView extends StatelessWidget {
                               destinationBuilder: () => LoginView(),
                               isReplace: true
                           );
-                          CustomPopUp.callMyToast(massage: TranslationsKeys.registerSuccess, state: PopUpState.SUCCESS);
+                          CustomPopUp.callMyToast(context: context, massage: TranslationsKeys.registerSuccess, state: PopUpState.SUCCESS);
                         }
                         else if(state is RegisterError)
                         {
-                          CustomPopUp.callMyToast(massage: state.errorMessage, state: PopUpState.ERROR);
+                          CustomPopUp.callMyToast(context: context, massage: state.errorMessage, state: PopUpState.ERROR);
                         }
                       },
                       builder: (context, state) {

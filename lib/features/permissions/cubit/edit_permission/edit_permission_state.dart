@@ -11,3 +11,5 @@ final class EditPermissionError extends EditPermissionState
 }
 
 final class EditPermissionSuccess extends EditPermissionState {}
+
+final class EditPermissionChangePermissionStatus extends EditPermissionState {}

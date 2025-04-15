@@ -4,11 +4,11 @@ import 'package:pos/features/permissions/data/repo/permissions_repo.dart';
 import 'get_permissions_state.dart';
 
 class GetPermissionsCubit extends Cubit<GetPermissionsState> {
-  GetPermissionsCubit() : super(GetPermissionsInitial());
+  GetPermissionsCubit(this.permissionsRepo) : super(GetPermissionsInitial());
 
   static GetPermissionsCubit get(context) => BlocProvider.of(context);
 
-  PermissionsRepo permissionsRepo = PermissionsRepo();
+  PermissionsRepo permissionsRepo ;
 
   Future<void> getPermissions() async {
     print('call getPermissions . . .');

@@ -13,11 +13,11 @@ class AppConstants{
   static const fontFamily = 'Cairo';
   static List<PermissionItemModel> allPermissions ({bool asAdmin = false})=>
   [
-    PermissionItemModel(nameAr: "فاتورة بيع",nameEn:  "Sales Invoice",  isSelected: asAdmin),
-    PermissionItemModel(nameEn: "Users",  nameAr: "المستخدمين", isSelected: asAdmin),
-    PermissionItemModel(nameEn: "Permissions",  nameAr: "الصلاحيات", isSelected: asAdmin),
-    PermissionItemModel(nameEn: "Categories",  nameAr: "الاقسام", isSelected: asAdmin),
-    PermissionItemModel(nameEn: "Products",  nameAr: "المنتجات", isSelected: asAdmin),
+    PermissionItemModel(name:  "Sales Invoice",  isSelected: asAdmin),
+    PermissionItemModel(name: "Users",  isSelected: asAdmin),
+    PermissionItemModel(name: "Permissions", isSelected: asAdmin),
+    PermissionItemModel(name: "Categories",  isSelected: asAdmin),
+    PermissionItemModel(name: "Products",  isSelected: asAdmin),
   ];
   static List<HomeViewItemBuilder> gridItems = [
     // homePageCard(

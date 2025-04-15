@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_toastr/flutter_toastr.dart';
 import 'package:pos/core/utils/app_colors.dart';
 import 'package:pos/core/utils/app_text_styles.dart';
 
@@ -10,11 +10,12 @@ class CustomPopUp
 {
 
   static callMyPopUp({
+    required context,
     required String massage,
     required PopUpState state
   })
   {
-    callMyToast(massage: massage, state: state);
+    callMyToast(context: context, massage: massage, state: state);
   }
 
   static Color choosePopUpColor(PopUpState state) {
@@ -34,24 +35,28 @@ class CustomPopUp
   }
 
   static void callMyToast({
+    required context,
     required String massage,
     required PopUpState state,
   }) =>
-      Fluttertoast.showToast(
-        msg: massage,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 3,
+      FlutterToastr.show(
+       massage,
+        context,
+        duration: 3,
+        textStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 16.0,
+        ),
+        // gravity: ToastGravity.BOTTOM,
+        // timeInSecForIosWeb: 3,
         backgroundColor: choosePopUpColor(state),
-        textColor: Colors.white,
-        fontSize: 16.0,
       );
 
   static void callMySnackBar({
     required context,
     required String text,
     PopUpState? state,
-    Color? backgroundColor = Colors.black,
+    Color? backgroundColor = AppColors.grey,
     Color textColor = AppColors.white
 
   })
@@ -63,7 +68,7 @@ class CustomPopUp
         backgroundColor,
         content: Text(
           text,
-          style: AppTextStyles.btnText(color: AppColors.black),
+          style: AppTextStyles.btnText(color: textColor).copyWith(fontSize: 16),
         ),
         duration:const Duration(seconds: 2) ,
       ),

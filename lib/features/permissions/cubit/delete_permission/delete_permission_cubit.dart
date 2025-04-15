@@ -7,10 +7,10 @@ import 'package:pos/features/permissions/data/repo/permissions_repo.dart';
 import 'delete_permission_state.dart';
 
 class DeletePermissionCubit extends Cubit<DeletePermissionState> {
-  DeletePermissionCubit() : super(DeletePermissionInitial());
+  DeletePermissionCubit(this.permissionsRepo) : super(DeletePermissionInitial());
   static DeletePermissionCubit get(context) => BlocProvider.of(context);
 
-  PermissionsRepo permissionsRepo = PermissionsRepo();
+  PermissionsRepo permissionsRepo;
 
   Future<void> deletePermission({required PermissionModel permission}) async {
     emit(DeletePermissionLoading());

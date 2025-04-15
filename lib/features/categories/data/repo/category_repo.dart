@@ -13,8 +13,7 @@ class CategoryRepo
   [
     CategoryModel(
       imagePath: 'https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-3foodgroups_fruits_detailfeature_thumb.jpg?sfvrsn=7abe71fe_4',
-      nameAr: 'عصائر',
-      nameEn: 'Fruits',
+      name: 'Fruits',
       showInSales: true,
       orderNumber: 1
     )

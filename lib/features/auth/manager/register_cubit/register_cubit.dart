@@ -9,8 +9,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
   static RegisterCubit get(context) => BlocProvider.of(context);
 
-  TextEditingController nameArController = TextEditingController();
-  TextEditingController nameEnController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
@@ -35,8 +34,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(RegisterLoading());
     var response = await authRepo.register(
       user: UserModel(
-        nameAr: nameArController.text,
-        nameEn: nameEnController.text,
+        name: nameController.text,
         phone: phoneController.text,
         email: emailController.text,
         password: passwordController.text,

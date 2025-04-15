@@ -42,11 +42,13 @@ dependencies:
   image_picker:
   shared_preferences:
   cached_network_image:
-  fluttertoast:
+  flutter_toastr: ^1.0.3
   flutter_staggered_animations:
   shimmer:
   flutter_svg:
-  intl: 
+  intl:
+  get_it:
+  dropdown_search: ^6.0.2
 
 dev_dependencies:
   flutter_test:

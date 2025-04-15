@@ -7,22 +7,32 @@ import 'package:pos/features/permissions/data/repo/permissions_repo.dart';
 import 'edit_permission_state.dart';
 
 class EditPermissionCubit extends Cubit<EditPermissionState> {
-  EditPermissionCubit() : super(EditPermissionInitial());
+  EditPermissionCubit(this.permissionsRepo, this.permission) : super(EditPermissionInitial())
+  {
+    nameController.text = permission.name??'';
+    descriptionController.text = permission.description??'';
+  }
   static EditPermissionCubit get(context) => BlocProvider.of(context);
 
-  PermissionsRepo permissionsRepo = PermissionsRepo();
+  PermissionsRepo permissionsRepo ;
+  PermissionModel permission ;
 
-  TextEditingController nameArController = TextEditingController();
-  TextEditingController nameEnController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Future<void> editPermission({required PermissionModel permission}) async {
+  void changePermissionStatus({required int index, required bool status})
+  {
+    permission.items[index].isSelected = status;
+    emit(EditPermissionChangePermissionStatus());
+
+  }
+  Future<void> editPermission() async {
     if(!formKey.currentState!.validate()) return;
 
-    permission.nameAr = nameArController.text;
-    permission.nameEn = nameEnController.text;
+    permission.name = nameController.text;
     permission.description = descriptionController.text;
+    print(permission.name);
     emit(EditPermissionLoading());
     final result = await permissionsRepo.editPermission(newPermission: permission);
     result.fold((l) => emit(EditPermissionError(error: l)), (r) => emit(EditPermissionSuccess()));

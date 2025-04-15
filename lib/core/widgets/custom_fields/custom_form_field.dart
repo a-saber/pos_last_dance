@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pos/core/utils/app_borders.dart';
 import 'package:pos/core/utils/app_colors.dart';
+import 'package:pos/core/utils/app_decoration.dart';
 import 'package:pos/core/utils/app_text_styles.dart';
 
 class CustomFormField extends StatelessWidget {
@@ -32,32 +33,10 @@ class CustomFormField extends StatelessWidget {
       obscuringCharacter: '●',
       validator: validator,
       style: AppTextStyles.formText(),
-      decoration: InputDecoration(
+      decoration: AppDecoration.inputDecoration(
         labelText: labelText,
-        labelStyle: AppTextStyles.formText(color: AppColors.grey),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-        border: OutlineInputBorder(
-            borderRadius: AppBorders.form,
-            borderSide: const BorderSide(color: AppColors.grey),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: AppBorders.form,
-          borderSide: const BorderSide(color: AppColors.grey),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: AppBorders.form,
-          borderSide: const BorderSide(color: AppColors.primary),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: AppBorders.form,
-          borderSide: const BorderSide(color: AppColors.error),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: AppBorders.form,
-          borderSide: const BorderSide(color: AppColors.primary),
-        ),
-        contentPadding: const EdgeInsetsDirectional.only(start: 16),
       ),
     );
   }

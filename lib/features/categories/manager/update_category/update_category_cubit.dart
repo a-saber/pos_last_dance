@@ -13,8 +13,7 @@ class UpdateCategoryCubit extends Cubit<UpdateCategoryState> {
 
   CategoryRepo categoryRepo = CategoryRepo();
 
-  TextEditingController nameArController = TextEditingController();
-  TextEditingController nameEnController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   XFile? image;
   bool showInSalesController = true;
   TextEditingController orderNumberController = TextEditingController();
@@ -28,8 +27,7 @@ class UpdateCategoryCubit extends Cubit<UpdateCategoryState> {
     {
       var response = await categoryRepo.updateCategory(
         category: CategoryModel(
-          nameAr: nameArController.text,
-          nameEn: nameEnController.text,
+          name: nameController.text,
           showInSales: showInSalesController,
           orderNumber: int.parse(orderNumberController.text),
         ),

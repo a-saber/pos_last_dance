@@ -1,14 +1,12 @@
 class CategoryModel
 {
-  String? nameAr;
-  String? nameEn;
+  String? name;
   String? imagePath;
   bool? showInSales;
   int? orderNumber;
 
   CategoryModel({
-    this.nameAr,
-    this.nameEn,
+    this.name,
     this.imagePath,
     this.showInSales,
     this.orderNumber

@@ -19,15 +19,18 @@ class PermissionsCubitBuilder extends StatelessWidget {
             return const CustomLoading();
           }
           else if (state is GetPermissionsError) {
-            return CustomError(error: state.error);
+            return CustomError(error: state.error,
+              onPressed: GetPermissionsCubit.get(context).getPermissions,
+            );
           }
           else if (state is GetPermissionsSuccess) {
             if (state.permissions.isEmpty) {
-              return CustomEmptyData();
+              return CustomEmptyData(
+                onPressed: GetPermissionsCubit.get(context).getPermissions,
+              );
             }
-            else {
-              print("object");
-              print(state.permissions.length);
+            else
+            {
               return permissionItemBuilder(context, state.permissions);
             }
           }

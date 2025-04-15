@@ -28,7 +28,12 @@ class AppTextStyles
     fontSize: 20,
     color: color,
   );
-  static TextStyle formText({Color color= AppColors.primary}) => TextStyle(
+  static TextStyle deleteBtnText({Color color= AppColors.error}) => TextStyle(
+    fontWeight: FontWeights.medium,
+    fontSize: 15,
+    color: color,
+  );
+  static TextStyle formText({Color color= AppColors.black}) => TextStyle(
     fontWeight: FontWeights.medium,
     fontSize: 18,
     color: color,
@@ -43,5 +48,10 @@ class AppTextStyles
     fontWeight: FontWeights.semiBold,
     fontSize: 20,
     color: AppColors.black,
+  );
+  static TextStyle itemsTitle({Color color= AppColors.black}) => TextStyle(
+    fontWeight: FontWeights.medium,
+    fontSize: 18,
+    color: color,
   );
 }

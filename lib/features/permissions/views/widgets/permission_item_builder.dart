@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:pos/core/cache/cache_data.dart';
-import 'package:pos/core/cache/cache_keys.dart';
 import 'package:pos/core/helper/my_navigator.dart';
-import 'package:pos/core/translation/translation_keys.dart';
 import 'package:pos/core/utils/app_colors.dart';
-import 'package:pos/core/widgets/show_delete_confirm_dialog.dart';
-import 'package:pos/features/permissions/cubit/delete_permission/delete_permission_cubit.dart';
-import 'package:pos/features/permissions/cubit/delete_permission/delete_permission_state.dart';
+import 'package:pos/core/utils/app_text_styles.dart';
 import 'package:pos/features/permissions/data/models/permission_model.dart';
+import 'package:pos/features/permissions/views/edit_permission_view.dart';
+
+import 'delete_permission_confirm_dialog.dart';
 
 class PermissionItemBuilder extends StatelessWidget {
   const PermissionItemBuilder({super.key, required this.permission});
@@ -20,7 +16,7 @@ class PermissionItemBuilder extends StatelessWidget {
     return InkWell(
       onTap: ()
       {
-        MyNavigator.goTo( destinationBuilder: () => Scaffold());
+        MyNavigator.goTo(destinationBuilder: ()=>EditPermissionView(permission: PermissionModel.from(permission)));
       },
       child: Dismissible(
         onDismissed: (direction)
@@ -28,33 +24,9 @@ class PermissionItemBuilder extends StatelessWidget {
           print("object");
         },
         confirmDismiss: (direction) async {
-          return await showDeleteConfirmationDialog(
+          return await showDeletePermissionConfirmDialog(
               context: context,
-              title: TranslationsKeys.deleteCategory.tr,
-              content: CacheData.lang == CacheKeys.keyEN ? permission.nameEn ?? '' : permission.nameAr ?? '',
-              deleteButtonBuilder: (ctx, button, loading) =>  BlocProvider(
-                create: (context) => DeletePermissionCubit(),
-                child: BlocConsumer<DeletePermissionCubit, DeletePermissionState>(
-                  listener: (context, state)
-                  {
-                    if (state is DeletePermissionSuccess)
-                    {
-                      deleteConfirmationDialogSuccess(ctx);
-                    }
-                    else if (state is DeletePermissionError)
-                    {
-                      deleteConfirmationDialogError(state.error);
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state is DeletePermissionLoading)
-                    {
-                      return loading;
-                    }
-                    return button(onPressed: () => DeletePermissionCubit.get(context).deletePermission(permission: permission));
-                  },
-                ),
-              )
+              permission: permission
           );
           },
         key: UniqueKey(),
@@ -73,10 +45,8 @@ class PermissionItemBuilder extends StatelessWidget {
                 ),
               ]
           ),
-          child: Text(
-            CacheData.lang == CacheKeys.keyEN ?
-            permission.nameEn ?? '' :
-            permission.nameAr ?? '',
+          child: Text( permission.name ?? '',
+            style: AppTextStyles.itemsTitle(),
           ),
         ),
       ),

@@ -44,11 +44,12 @@ Widget confirmButtonBuilder({required void Function() onPressed}) {
 void deleteConfirmationDialogSuccess(BuildContext ctx) {
   Navigator.of(ctx).pop(true);
   CustomPopUp.callMyToast(
+      context: ctx,
       massage: TranslationsKeys.deletedSuccess.tr, state: PopUpState.SUCCESS);
 }
 
-void deleteConfirmationDialogError(String error) {
-  CustomPopUp.callMyToast(massage: error, state: PopUpState.ERROR);
+void deleteConfirmationDialogError(BuildContext ctx, String error) {
+  CustomPopUp.callMyToast(context: ctx, massage: error, state: PopUpState.ERROR);
 }
 
 Widget deleteConfirmationDialogLoading() => CustomLoading();

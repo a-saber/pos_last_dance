@@ -37,7 +37,7 @@ class CategoryItemBuilder extends StatelessWidget {
           return await showDeleteConfirmationDialog(
             context: context,
             title: TranslationsKeys.deleteCategory.tr,
-            content: CacheData.lang == CacheKeys.keyEN ? category.nameEn ?? '' : category.nameAr ?? '',
+            content: category.name ?? '' ,
             deleteButtonBuilder: (ctx, button, loading) =>  BlocProvider(
               create: (context) => DeleteCategoryCubit(),
               child: BlocConsumer<DeleteCategoryCubit, DeleteCategoryState>(
@@ -49,7 +49,7 @@ class CategoryItemBuilder extends StatelessWidget {
                   }
                   else if (state is DeleteCategoryError)
                   {
-                    deleteConfirmationDialogError(state.error);
+                    deleteConfirmationDialogError( ctx, state.error);
                   }
                 },
                 builder: (context, state) {
@@ -111,9 +111,7 @@ class CategoryItemBuilder extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            CacheData.lang == CacheKeys.keyEN ?
-                            category.nameEn ?? '' :
-                            category.nameAr ?? '',
+                           category.name??'',
                           ),
                         ),
                         const SizedBox(width: 10,),

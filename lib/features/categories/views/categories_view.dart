@@ -10,6 +10,7 @@ import 'package:pos/core/widgets/custom_empty_data.dart';
 import 'package:pos/core/widgets/custom_error.dart';
 import 'package:pos/core/widgets/custom_floating_action_btn.dart';
 import 'package:pos/core/widgets/custom_loading.dart';
+import 'package:pos/core/widgets/custom_refresh_indicator.dart';
 import 'package:pos/features/categories/manager/get_categories/get_categories_cubit.dart';
 import 'package:pos/features/categories/manager/get_categories/get_categories_state.dart';
 import 'package:pos/features/categories/views/widgets/category_item_builder.dart';
@@ -30,7 +31,7 @@ class CategoriesView extends StatelessWidget {
       appBar: CustomAppBar(title: TranslationsKeys.categories.tr),
       body: Padding(
         padding: AppPaddings.defaultView,
-        child: RefreshIndicator(
+        child: CustomRefreshIndicator(
           onRefresh: ()async
           {
             return await GetCategoriesCubit.get(context).getCategories();
@@ -43,13 +44,17 @@ class CategoriesView extends StatelessWidget {
               }
               else if (state is GetCategoriesError)
               {
-                return CustomError(error: state.error);
+                return CustomError(error: state.error,
+                  onPressed: GetCategoriesCubit.get(context).getCategories,
+                );
               }
               else if (state is GetCategoriesSuccess)
               {
                 if(state.categories.isEmpty)
                 {
-                  return CustomEmptyData();
+                  return CustomEmptyData(
+                    onPressed: GetCategoriesCubit.get(context).getCategories,
+                  );
                 }
                 else
                 {

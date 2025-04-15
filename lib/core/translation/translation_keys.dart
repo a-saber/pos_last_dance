@@ -22,6 +22,10 @@ abstract class TranslationsKeys {
   static const String areYouSureWantToDelete = 'Are you sure you want to delete';
   static const String cancel = 'cancel';
   static const String delete = 'delete';
+  static const String add = 'add';
+  static const String edit = 'edit';
+  static const String search = 'search';
+  static const String refresh = 'refresh';
   static const String selectImage = 'selectImage';
 
 
@@ -58,12 +62,12 @@ abstract class TranslationsKeys {
   // data
   static const String email = 'email';
   static const String phone = 'phone';
-  static const String nameAr = 'nameAr';
-  static const String nameEn = 'nameEn';
+  static const String name = 'name';
   static const String description = 'description';
   static const String showInSales = 'showInSales';
   static const String notShowInSales = 'notShowInSales';
   static const String orderNumber = 'orderNumber';
+
 
   static const String address = 'address';
   static const String password = 'password';

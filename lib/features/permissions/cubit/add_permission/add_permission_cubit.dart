@@ -7,10 +7,10 @@ import 'package:pos/features/permissions/data/repo/permissions_repo.dart';
 import 'add_permission_state.dart';
 
 class AddPermissionCubit extends Cubit<AddPermissionState> {
-  AddPermissionCubit() : super(AddPermissionInitial());
+  AddPermissionCubit(this.permissionsRepo) : super(AddPermissionInitial());
   static AddPermissionCubit get(context) => BlocProvider.of(context);
 
-  PermissionsRepo permissionsRepo = PermissionsRepo();
+  PermissionsRepo permissionsRepo ;
 
   void changePermissionStatus({required int index, required bool status})
   {
@@ -20,15 +20,13 @@ class AddPermissionCubit extends Cubit<AddPermissionState> {
   }
 
   PermissionModel permission = PermissionModel();
-  TextEditingController nameArController = TextEditingController();
-  TextEditingController nameEnController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Future<void> addPermission() async {
     if(!formKey.currentState!.validate()) return;
 
-    permission.nameAr = nameArController.text;
-    permission.nameEn = nameEnController.text;
+    permission.name = nameController.text;
     permission.description = descriptionController.text;
     emit(AddPermissionLoading());
     final result = await permissionsRepo.addPermission(permission: permission);

@@ -38,6 +38,13 @@ class MyFormValidators {
     return null;
   }
 
+  static String? validateTypeRequired<T>(T? value, {String fieldName = 'Field'}) {
+    if (value == null) {
+      return '$fieldName is required';
+    }
+    return null;
+  }
+
   static String? validateMinLength(String? value, int minLength, {String fieldName = 'Field'}) {
     if (value == null || value.length < minLength) {
       return '$fieldName must be at least $minLength characters';

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pos/core/translation/translation_keys.dart';
 import 'package:pos/core/utils/app_colors.dart';
+import 'package:pos/core/widgets/custom_network_image.dart';
 
 import 'image_manager_cubit.dart';
 import 'image_manager_state.dart';
@@ -16,8 +17,10 @@ class ImageManagerView extends StatelessWidget {
     this.selectedImageBuilder,
     this.unSelectedImageBuilder,
     required this.onSelected,
+    this.imageUrl,
   });
 
+  final String? imageUrl ;
   final Widget Function(XFile image)? selectedImageBuilder;
   final Widget Function()? unSelectedImageBuilder;
   final void Function(XFile image) onSelected;
@@ -67,6 +70,23 @@ class ImageManagerView extends StatelessWidget {
                       }
                       else
                       {
+                        if(imageUrl != null)
+                        {
+                          return CustomCachedNetworkImage(
+                            borderRadius: BorderRadius.circular(15),
+                            imageUrl: imageUrl!,
+                            imageBuilder: (imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover
+                                )
+                              ),
+                            ),
+                            width: MediaQuery.of(context).size.width*0.5,
+                            height: MediaQuery.of(context).size.height*0.3,
+                          );
+                        }
                         return const Icon(Icons.image, size: 50, color: AppColors.primary,);
                       }
                     }

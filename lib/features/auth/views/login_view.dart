@@ -69,7 +69,7 @@ class LoginView extends StatelessWidget {
                       listener: (context, state) {
                         if (state is LoginSuccess)
                         {
-                          CustomPopUp.callMyToast(massage: TranslationsKeys.loginSuccess, state: PopUpState.SUCCESS);
+                          CustomPopUp.callMyToast(context: context, massage: TranslationsKeys.loginSuccess, state: PopUpState.SUCCESS);
                           MyNavigator.goTo(
                               destinationBuilder: ()=>HomeView(),
                               isReplace: true
@@ -77,7 +77,7 @@ class LoginView extends StatelessWidget {
                         }
                         else if (state is LoginError)
                         {
-                          CustomPopUp.callMyToast(massage: state.errorMessage, state: PopUpState.ERROR);
+                          CustomPopUp.callMyToast(context: context, massage: state.errorMessage, state: PopUpState.ERROR);
                         }
                       },
                       builder: (context, state) {

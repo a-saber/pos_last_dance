@@ -46,17 +46,8 @@ class AddCategoryView extends StatelessWidget {
                       height: 20,
                     ),
                     CustomFormField(
-                      controller: AddCategoryCubit.get(context).nameArController,
-                      labelText: TranslationsKeys.nameAr.tr,
-                      validator: MyFormValidators.validateRequired,
-                      keyboardType: TextInputType.name,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomFormField(
-                      controller: AddCategoryCubit.get(context).nameEnController,
-                      labelText: TranslationsKeys.nameEn.tr,
+                      controller: AddCategoryCubit.get(context).nameController,
+                      labelText: TranslationsKeys.name.tr,
                       validator: MyFormValidators.validateRequired,
                       keyboardType: TextInputType.name,
                     ),
@@ -95,12 +86,12 @@ class AddCategoryView extends StatelessWidget {
                         if(state is AddCategorySuccess)
                         {
                           GetCategoriesCubit.get(context).getCategories();
-                          CustomPopUp.callMyToast(massage: TranslationsKeys.addedSuccess.tr, state: PopUpState.SUCCESS);
+                          CustomPopUp.callMyToast(context: context, massage: TranslationsKeys.addedSuccess.tr, state: PopUpState.SUCCESS);
                           MyNavigator.goBack();
                         }
                         else if(state is AddCategoryError)
                         {
-                          CustomPopUp.callMyPopUp(massage: state.error, state: PopUpState.ERROR);
+                          CustomPopUp.callMyPopUp(context: context, massage: state.error, state: PopUpState.ERROR);
                         }
                       },
                       builder: (context, state) {
