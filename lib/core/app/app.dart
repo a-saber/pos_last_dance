@@ -2,18 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pos/core/cache/cache_data.dart';
-import 'package:pos/core/helper/service_loactor.dart';
+import 'package:pos/core/helper/my_service_locator.dart';
 import 'package:pos/core/translation/translation_helper.dart';
 import 'package:pos/core/translation/translation_keys.dart';
 import 'package:pos/core/utils/app_colors.dart';
 import 'package:pos/core/utils/app_constants.dart';
 import 'package:pos/core/utils/app_text_styles.dart';
 import 'package:pos/features/auth/views/login_view.dart';
+import 'package:pos/features/categories/data/repo/category_repo.dart';
 import 'package:pos/features/categories/manager/get_categories/get_categories_cubit.dart';
+import 'package:pos/features/clients/cubit/get_clients/get_clients_cubit.dart';
+import 'package:pos/features/clients/data/repo/clients_repo.dart';
 import 'package:pos/features/home/views/home_view.dart';
 import 'package:pos/features/permissions/cubit/get_permissions/get_permissions_cubit.dart';
 import 'package:pos/features/permissions/data/repo/permissions_repo.dart';
 import 'package:pos/features/selling_points/presentation/selling_point_cubit/selling_point_cubit.dart';
+import 'package:pos/features/suppliers/cubit/get_suppliers/get_suppliers_cubit.dart';
+import 'package:pos/features/suppliers/data/repo/suppliers_repo.dart';
 import 'package:pos/features/users/cubit/get_users/get_users_cubit.dart';
 import 'package:pos/features/users/data/repo/users_repo.dart';
 
@@ -31,9 +36,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers:
       [
-        BlocProvider(create: (context) => GetCategoriesCubit()..getCategories()),
+        BlocProvider(create: (context) => GetCategoriesCubit(MyServiceLocator.getSingleton<CategoryRepo>())..getCategories()),
         BlocProvider(create: (context) => GetPermissionsCubit(MyServiceLocator.getSingleton<PermissionsRepo>())..getPermissions()),
         BlocProvider(create: (context) => GetUsersCubit(MyServiceLocator.getSingleton<UsersRepo>())..getUsers()),
+        BlocProvider(create: (context) => GetClientsCubit(MyServiceLocator.getSingleton<ClientsRepo>())..getClients()),
+        BlocProvider(create: (context) => GetSuppliersCubit(MyServiceLocator.getSingleton<SuppliersRepo>())..getSuppliers()),
         BlocProvider(create: (context) => SellingPointCubit()),
       ],
       child: GetMaterialApp(

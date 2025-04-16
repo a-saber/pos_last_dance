@@ -24,7 +24,7 @@ class CustomError extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            CustomFilledBtn(text: TranslationsKeys.refresh.tr, onPressed: onPressed)
+            CustomFilledBtn( expandWidth: false, text: TranslationsKeys.refresh.tr, onPressed: onPressed)
           ],
         )
     );

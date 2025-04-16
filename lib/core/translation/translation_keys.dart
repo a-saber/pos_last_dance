@@ -10,6 +10,11 @@ abstract class TranslationsKeys {
 
   // App Strings
   static const String login = 'login';
+  static const String logout = 'logout';
+  static const String settings = 'settings';
+  static const String sureWannaLogOut = 'sureWannaLogOut';
+  static const String hello = 'hello';
+  static const String profile = 'profile';
   static const String donTHaveAccount = 'donTHaveAccount';
   static const String alreadyHaveAccount = 'alreadyHaveAccount';
   static const String register = 'register';
@@ -57,6 +62,18 @@ abstract class TranslationsKeys {
   static const String editPermission = 'editPermission';
   static const String deletePermission = 'deletePermission';
 
+  // clients
+  static const String clients = 'clients';
+  static const String addClient = 'addClient';
+  static const String editClient = 'editClient';
+  static const String deleteClient = 'deleteClient';
+
+  // suppliers
+  static const String suppliers = 'suppliers';
+  static const String addSupplier = 'addSupplier';
+  static const String editSupplier = 'editSupplier';
+  static const String deleteSupplier = 'deleteSupplier';
+
 
 
   // data
@@ -64,9 +81,9 @@ abstract class TranslationsKeys {
   static const String phone = 'phone';
   static const String name = 'name';
   static const String description = 'description';
-  static const String showInSales = 'showInSales';
-  static const String notShowInSales = 'notShowInSales';
-  static const String orderNumber = 'orderNumber';
+  static const String commercialRegister = 'commercialRegister';
+  static const String taxIdentificationNumber = 'taxIdentificationNumber';
+  static const String note = 'note';
 
 
   static const String address = 'address';

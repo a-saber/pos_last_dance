@@ -1,11 +1,24 @@
 class MyFormValidators {
-  static String? validateEmail(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Email is required';
+  static String? validateEmail(String? value, {bool validateEmpty = true}) {
+    if(validateEmpty)
+    {
+      if (value == null || value.trim().isEmpty) {
+        return 'Email is required';
+      }
+      final emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
+      if (!emailRegex.hasMatch(value.trim())) {
+        return 'Enter a valid email';
+      }
     }
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegex.hasMatch(value.trim())) {
-      return 'Enter a valid email';
+    else
+    {
+      if(value != null && value.trim().isNotEmpty)
+      {
+        final emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
+        if (!emailRegex.hasMatch(value.trim())) {
+          return 'Enter a valid email';
+        }
+      }
     }
     return null;
   }
@@ -58,14 +71,29 @@ class MyFormValidators {
     }
     return null;
   }
-  static String? validateInteger(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Field is required';
+  static String? validateInteger(String? value, {bool validateEmpty = true}) {
+    if(validateEmpty)
+    {
+      if (value == null || value.trim().isEmpty) {
+        return 'Field is required';
+      }
+      final integerRegex = RegExp(r'^\d+$');
+      if (!integerRegex.hasMatch(value.trim())) {
+        return 'Enter a valid integer';
+      }
     }
-    final integerRegex = RegExp(r'^\d+$');
-    if (!integerRegex.hasMatch(value.trim())) {
-      return 'Enter a valid integer';
+    else
+    {
+      if(value != null && value.trim().isNotEmpty)
+      {
+        final integerRegex = RegExp(r'^\d+$');
+        if (!integerRegex.hasMatch(value.trim())) {
+          return 'Enter a valid integer';
+        }
+      }
     }
+
     return null;
   }
+
 }

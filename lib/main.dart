@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pos/core/cache/cache_helper.dart';
-import 'package:pos/core/helper/service_loactor.dart';
+import 'package:pos/core/helper/my_service_locator.dart';
 
 import 'core/app/app.dart';
 import 'core/translation/translation_helper.dart';

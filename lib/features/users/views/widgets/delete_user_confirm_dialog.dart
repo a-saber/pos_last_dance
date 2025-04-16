@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pos/core/helper/my_navigator.dart';
-import 'package:pos/core/helper/service_loactor.dart';
+import 'package:pos/core/helper/my_service_locator.dart';
 import 'package:pos/core/translation/translation_keys.dart';
 import 'package:pos/core/widgets/show_delete_confirm_dialog.dart';
 import 'package:pos/features/users/cubit/delete_user/delete_user_cubit.dart';

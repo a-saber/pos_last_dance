@@ -30,7 +30,7 @@ class UsersView extends StatelessWidget {
         child: Padding(
           padding: AppPaddings.defaultView,
           child: UsersCubitBuilder(
-            userItemBuilder: (context, users)
+            usersBuilder: (context, users)
             {
               return ListView.builder(
                 itemCount: users.length,

@@ -27,7 +27,7 @@ class PermissionsView extends StatelessWidget {
         onRefresh: GetPermissionsCubit.get(context).getPermissions,
         child: Padding(
           padding: AppPaddings.defaultView,
-          child: PermissionsCubitBuilder(permissionItemBuilder: (context, permissions) {
+          child: PermissionsCubitBuilder(permissionsBuilder: (context, permissions) {
             return ListView.builder(
               itemCount: permissions.length,
               itemBuilder: (context, index) {

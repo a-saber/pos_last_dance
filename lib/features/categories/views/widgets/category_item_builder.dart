@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:pos/core/cache/cache_data.dart';
-import 'package:pos/core/cache/cache_keys.dart';
-import 'package:pos/core/translation/translation_keys.dart';
 import 'package:pos/core/utils/app_colors.dart';
+import 'package:pos/core/utils/app_text_styles.dart';
 import 'package:pos/core/utils/app_transition.dart';
 import 'package:pos/core/widgets/custom_network_image.dart';
-import 'package:pos/core/widgets/custom_pop_up.dart';
-import 'package:pos/core/widgets/show_delete_confirm_dialog.dart';
 import 'package:pos/features/categories/data/models/category_model.dart';
-import 'package:pos/features/categories/manager/delete_category/delete_category_cubit.dart';
-import 'package:pos/features/categories/manager/delete_category/delete_category_state.dart';
+
+import 'delete_category_confirm_dialog.dart';
 
 class CategoryItemBuilder extends StatelessWidget {
   const CategoryItemBuilder({super.key, required this.category, required this.index});
@@ -34,34 +29,7 @@ class CategoryItemBuilder extends StatelessWidget {
           print("object");
         },
         confirmDismiss: (direction) async {
-          return await showDeleteConfirmationDialog(
-            context: context,
-            title: TranslationsKeys.deleteCategory.tr,
-            content: category.name ?? '' ,
-            deleteButtonBuilder: (ctx, button, loading) =>  BlocProvider(
-              create: (context) => DeleteCategoryCubit(),
-              child: BlocConsumer<DeleteCategoryCubit, DeleteCategoryState>(
-                listener: (context, state)
-                {
-                  if (state is DeleteCategorySuccess)
-                  {
-                    deleteConfirmationDialogSuccess(ctx);
-                  }
-                  else if (state is DeleteCategoryError)
-                  {
-                    deleteConfirmationDialogError( ctx, state.error);
-                  }
-                },
-                builder: (context, state) {
-                  if (state is DeleteCategoryLoading)
-                  {
-                    return loading;
-                  }
-                  return button(onPressed: () => DeleteCategoryCubit.get(context).deleteCategory(category: category, index: index));
-                },
-              ),
-            )
-          );
+          return await  showDeleteCategoryConfirmDialog(context: context, category: category);
         },
         key: UniqueKey(),
         child: Container(
@@ -107,40 +75,21 @@ class CategoryItemBuilder extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                           category.name??'',
-                          ),
+                    Text(
+                     category.name??'',
+                      style: AppTextStyles.itemsTitle(),
+                    ),
+                    if(category.description != null && category.description!.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Text(
+                        category.description??'',
+                        style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(width: 10,),
-                        Text(
-                          '${category.orderNumber??''}',
-                        )
-                      ],
+                        maxLines: 1,
+                      ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    if(category.showInSales??false)
-                      Row(
-                        children:
-                        [
-                          Icon(Icons.check_circle_outline, color: AppColors.primary, size: 20,),
-                          SizedBox(width: 5,),
-                          Text(TranslationsKeys.showInSales.tr)
-                        ],
-                      )
-                    else
-                      Row(
-                        children:
-                        [
-                          Icon(Icons.cancel_outlined, color: AppColors.error, size: 20,),
-                          SizedBox(width: 5,),
-                          Text(TranslationsKeys.notShowInSales.tr)
-                        ],
-                      )
                   ],
                 ),
               ),

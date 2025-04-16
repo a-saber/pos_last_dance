@@ -8,8 +8,8 @@ import 'package:pos/features/users/cubit/get_users/get_users_state.dart';
 import 'package:pos/features/users/data/models/user_model.dart';
 
 class UsersCubitBuilder extends StatelessWidget {
-  const UsersCubitBuilder({super.key, required this.userItemBuilder});
-  final Widget Function(BuildContext context, List<UserModel> users) userItemBuilder;
+  const UsersCubitBuilder({super.key, required this.usersBuilder});
+  final Widget Function(BuildContext context, List<UserModel> users) usersBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class UsersCubitBuilder extends StatelessWidget {
           }
           else
           {
-            return userItemBuilder(context, state.users);
+            return usersBuilder(context, state.users);
           }
         }
         else

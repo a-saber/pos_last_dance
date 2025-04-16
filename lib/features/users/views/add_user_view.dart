@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pos/core/helper/my_navigator.dart';
-import 'package:pos/core/helper/service_loactor.dart';
+import 'package:pos/core/helper/my_service_locator.dart';
 import 'package:pos/core/translation/translation_keys.dart';
 import 'package:pos/core/widgets/custom_app_bar.dart';
 import 'package:pos/core/widgets/custom_pop_up.dart';

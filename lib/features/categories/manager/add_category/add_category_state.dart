@@ -14,4 +14,3 @@ final class AddCategoryError extends AddCategoryState {
   AddCategoryError(this.error);
 }
 
-final class AddCategoryShowInSalesStatus extends AddCategoryState {}

@@ -5,7 +5,7 @@ import 'package:pos/core/cache/cache_data.dart';
 import 'package:pos/core/cache/cache_keys.dart';
 import 'package:pos/core/helper/custom_validator.dart';
 import 'package:pos/core/helper/my_navigator.dart';
-import 'package:pos/core/helper/service_loactor.dart';
+import 'package:pos/core/helper/my_service_locator.dart';
 import 'package:pos/core/translation/translation_keys.dart';
 import 'package:pos/core/utils/app_paddings.dart';
 import 'package:pos/core/widgets/custom_app_bar.dart';

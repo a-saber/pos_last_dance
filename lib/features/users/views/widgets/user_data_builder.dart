@@ -84,7 +84,7 @@ class UserDataBuilder extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-          PermissionsCubitBuilder(permissionItemBuilder: (context, permissions) {
+          PermissionsCubitBuilder(permissionsBuilder: (context, permissions) {
             return CustomDropdown<PermissionModel>(
               search: true,
               compareFn: (item1, item2)

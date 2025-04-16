@@ -12,7 +12,7 @@ import 'package:pos/features/permissions/cubit/get_permissions/get_permissions_c
 import 'package:pos/features/permissions/data/models/permission_model.dart';
 import 'package:pos/features/permissions/data/repo/permissions_repo.dart';
 
-import '../../../core/helper/service_loactor.dart';
+import '../../../core/helper/my_service_locator.dart';
 import 'widgets/delete_permission_confirm_dialog.dart';
 import 'widgets/permission_data_builder.dart';
 

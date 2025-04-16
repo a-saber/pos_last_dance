@@ -8,40 +8,31 @@ import 'add_category_state.dart';
 
 
 class AddCategoryCubit extends Cubit<AddCategoryState> {
-  AddCategoryCubit() : super(AddCategoryInitial());
+  AddCategoryCubit(this.categoryRepo) : super(AddCategoryInitial());
   static AddCategoryCubit get(context) => BlocProvider.of(context);
 
-  CategoryRepo categoryRepo = CategoryRepo();
+  CategoryRepo categoryRepo;
 
   TextEditingController nameController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   XFile? image;
-  bool showInSales = true;
-  TextEditingController orderNumberController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Future<void> addCategory() async
   {
+    if(!formKey.currentState!.validate()) return;
     emit(AddCategoryLoading());
-    if(formKey.currentState!.validate())
-    {
-      var response = await categoryRepo.addCategory(
-        category: CategoryModel(
-          name: nameController.text,
-          showInSales: showInSales,
-          orderNumber: int.tryParse(orderNumberController.text),
-        )
-      );
-      response.fold(
-        (l) => emit(AddCategoryError(l)),
-        (r) => emit(AddCategorySuccess()),
-      );
-    }
-  }
-
-  void changeShowInSalesStatus({required bool value})
-  {
-    showInSales = value;
-    emit(AddCategoryShowInSalesStatus());
+    var response = await categoryRepo.addCategory(
+      category: CategoryModel(
+        name: nameController.text,
+        description: descriptionController.text,
+        imagePath: image?.path,
+      )
+    );
+    response.fold(
+      (l) => emit(AddCategoryError(l)),
+      (r) => emit(AddCategorySuccess()),
+    );
   }
 }

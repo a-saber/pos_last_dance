@@ -7,10 +7,10 @@ import 'get_categories_state.dart';
 
 
 class GetCategoriesCubit extends Cubit<GetCategoriesState> {
-  GetCategoriesCubit() : super(GetCategoriesInitial());
+  GetCategoriesCubit(this.categoryRepo) : super(GetCategoriesInitial());
   static GetCategoriesCubit get(context) => BlocProvider.of(context);
 
-  CategoryRepo categoryRepo = CategoryRepo();
+  CategoryRepo categoryRepo ;
 
   Future<void> getCategories() async
   {

@@ -8,9 +8,9 @@ import 'package:pos/features/permissions/cubit/get_permissions/get_permissions_s
 import 'package:pos/features/permissions/data/models/permission_model.dart';
 
 class PermissionsCubitBuilder extends StatelessWidget {
-  const PermissionsCubitBuilder({super.key, required this.permissionItemBuilder});
+  const PermissionsCubitBuilder({super.key, required this.permissionsBuilder});
 
-  final Widget Function(BuildContext context, List<PermissionModel> permissions) permissionItemBuilder;
+  final Widget Function(BuildContext context, List<PermissionModel> permissions) permissionsBuilder;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetPermissionsCubit, GetPermissionsState>(
@@ -31,7 +31,7 @@ class PermissionsCubitBuilder extends StatelessWidget {
             }
             else
             {
-              return permissionItemBuilder(context, state.permissions);
+              return permissionsBuilder(context, state.permissions);
             }
           }
           else {

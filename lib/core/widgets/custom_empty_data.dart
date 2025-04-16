@@ -17,7 +17,7 @@ class CustomEmptyData extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            CustomFilledBtn(text: TranslationsKeys.refresh.tr, onPressed: onPressed)
+            CustomFilledBtn(expandWidth: false,text: TranslationsKeys.refresh.tr, onPressed: onPressed)
           ],
         )
     );

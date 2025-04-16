@@ -1,15 +1,25 @@
 class CategoryModel
 {
+  int? id;
   String? name;
   String? imagePath;
-  bool? showInSales;
-  int? orderNumber;
+  String? description;
 
   CategoryModel({
+    this.id,
     this.name,
     this.imagePath,
-    this.showInSales,
-    this.orderNumber
+    this.description,
 });
+
+  static CategoryModel from (CategoryModel source)
+  {
+    return CategoryModel(
+      id: source.id,
+      name: source.name,
+      imagePath: source.imagePath,
+      description: source.description,
+    );
+  }
 
 }

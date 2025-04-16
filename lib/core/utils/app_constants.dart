@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pos/core/translation/translation_keys.dart';
 import 'package:pos/features/categories/views/categories_view.dart';
+import 'package:pos/features/clients/views/clients_view.dart';
 import 'package:pos/features/home/views/widgets/home_view_item_builder.dart';
 import 'package:pos/features/permissions/data/models/permission_model.dart';
 import 'package:pos/features/permissions/views/permissions_view.dart';
 import 'package:pos/features/selling_points/presentation/views/selling_points_view.dart';
+import 'package:pos/features/suppliers/views/suppliers_view.dart';
 import 'package:pos/features/users/views/users_view.dart';
 
 class AppConstants{
@@ -38,7 +40,7 @@ class AppConstants{
     HomeViewItemBuilder(
       color: Color(0xffFF6D6D),
       page: const SellingPointsView(),
-      icon: Icons.control_point_duplicate,
+      icon: Icons.shopping_basket_outlined,
       title: TranslationsKeys.sellingPoint.tr,
     ),
     // homePageCard(
@@ -53,13 +55,13 @@ class AppConstants{
     HomeViewItemBuilder(
       color: Color(0xffffa700),
       page: CategoriesView(),
-      icon: Icons.code,
+      icon: Icons.category_outlined,
       title: TranslationsKeys.categories.tr,
     ),
     HomeViewItemBuilder(
       color: Color(0xfff37736),
       page: Scaffold(),
-      icon: Icons.code,
+      icon: Icons.shopping_bag_outlined,
       title: TranslationsKeys.products.tr,
     ),
     HomeViewItemBuilder(
@@ -73,6 +75,18 @@ class AppConstants{
       icon: Icons.security_rounded,
       page: PermissionsView(),
       title: TranslationsKeys.permissions.tr,
+    ),
+    HomeViewItemBuilder(
+      color: Color(0xffffa700),
+      icon: Icons.groups_2_outlined,
+      page: ClientsView(),
+      title: TranslationsKeys.clients.tr,
+    ),
+    HomeViewItemBuilder(
+      color: Color(0xffffa700),
+      icon: Icons.handshake_outlined,
+      page: SuppliersView(),
+      title: TranslationsKeys.suppliers.tr,
     ),
     // homePageCard(
     //   color: Colors.lightGreen,

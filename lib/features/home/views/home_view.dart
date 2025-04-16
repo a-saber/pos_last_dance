@@ -6,11 +6,14 @@ import 'package:pos/core/translation/translation_keys.dart';
 import 'package:pos/core/utils/app_constants.dart';
 import 'package:pos/core/widgets/custom_app_bar.dart';
 
+import 'widgets/custom_drawer.dart';
+
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
     int getColumnCount() {
       double width = Get.width;
       if (width >= 1200) return 6;
@@ -21,7 +24,17 @@ class HomeView extends StatelessWidget {
     }
     int columnCount = getColumnCount();
     return Scaffold(
-      appBar: CustomAppBar(title: TranslationsKeys.home,),
+      key: scaffoldKey,
+      appBar: CustomAppBar(
+        title: TranslationsKeys.home,
+        leading: IconButton(
+          onPressed: () async{
+            scaffoldKey.currentState!.openDrawer();
+          },
+          icon: const Icon(Icons.grid_view_rounded),
+        ),
+      ),
+      drawer: CustomDrawer(scaffoldKey: scaffoldKey,),
       body: ListView(
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         children: [

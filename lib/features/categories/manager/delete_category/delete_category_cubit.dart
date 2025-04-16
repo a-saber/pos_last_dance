@@ -6,17 +6,16 @@ import 'delete_category_state.dart';
 
 
 class DeleteCategoryCubit extends Cubit<DeleteCategoryState> {
-  DeleteCategoryCubit() : super(DeleteCategoryInitial());
+  DeleteCategoryCubit(this.categoryRepo) : super(DeleteCategoryInitial());
   static DeleteCategoryCubit get(context) => BlocProvider.of(context);
 
-  CategoryRepo categoryRepo = CategoryRepo();
+  CategoryRepo categoryRepo ;
 
-  Future<void> deleteCategory({required int index, required CategoryModel category}) async
+  Future<void> deleteCategory({required CategoryModel category}) async
   {
     emit(DeleteCategoryLoading());
 
     var response = await categoryRepo.deleteCategory(
-      index: index,
       category: category,
     );
     response.fold(

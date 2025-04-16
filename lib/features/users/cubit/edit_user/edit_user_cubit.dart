@@ -40,7 +40,7 @@ class EditUserCubit extends Cubit<EditUserState> {
     user.phone = phoneController.text;
     user.email = emailController.text;
     user.address = addressController.text;
-    user.image = image?.path;
+    if(image != null) user.image = image?.path;
     emit(EditUserLoading());
     final result = await usersRepo.editUser(newUser: user);
     result.fold((l) => emit(EditUserError(error: l)), (r) => emit(EditUserSuccess()));

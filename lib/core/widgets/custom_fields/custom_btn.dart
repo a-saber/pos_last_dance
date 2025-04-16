@@ -6,40 +6,44 @@ class CustomFilledBtn extends StatelessWidget {
   const CustomFilledBtn({super.key,
     required this.text,
     this.icon,
-    required this.onPressed,
+    required this.onPressed, this.expandWidth = true,
   });
 
   final String text;
   final Widget? icon;
   final void Function() onPressed;
+  final bool expandWidth;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5)
+    return SizedBox(
+      width: expandWidth ? double.infinity : null,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5)
+          ),
+          backgroundColor: AppColors.primary,
+          padding:  const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
         ),
-        backgroundColor: AppColors.primary,
-        padding:  const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-      ),
-      onPressed: onPressed,
-      child: icon == null ? Text(text, style: AppTextStyles.btnText(),) :
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children:
-        [
-          Padding(
-            padding: const EdgeInsetsDirectional.only(end: 8.0),
-            child: icon,
-          ),
-          Text(
-            text,
-            style: AppTextStyles.btnText(),
-          ),
+        onPressed: onPressed,
+        child: icon == null ? Text(text, style: AppTextStyles.btnText(),) :
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children:
+          [
+            Padding(
+              padding: const EdgeInsetsDirectional.only(end: 8.0),
+              child: icon,
+            ),
+            Text(
+              text,
+              style: AppTextStyles.btnText(),
+            ),
 
-        ],
-      )
+          ],
+        )
+      ),
     );
   }
 }
@@ -49,11 +53,13 @@ class CustomTextBtn extends StatelessWidget {
     required this.text,
     this.icon,
     required this.onPressed,
+    this.style,
   });
 
   final String text;
   final Widget? icon;
   final void Function() onPressed;
+  final TextStyle? style;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -71,7 +77,7 @@ class CustomTextBtn extends StatelessWidget {
               ),
               Text(
                 text,
-                style: AppTextStyles.deleteBtnText(),
+                style: style ?? AppTextStyles.deleteBtnText(),
               ),
 
             ],
